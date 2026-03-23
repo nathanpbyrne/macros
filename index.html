@@ -206,6 +206,7 @@
           <button class="btn-ghost" onclick="prefillHyChi()">🥡 HyChi Cashew</button>
           <button class="btn-ghost" onclick="prefillApple()">🍎 Apple</button>
           <button class="btn-ghost" onclick="prefillBootlegger()">🥖 Bootlegger Club</button>
+          <button class="btn-ghost" onclick="prefillChips()">🥔 JJ Ranch Chips</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -310,6 +311,14 @@ function setLogTab(tab) {
   document.getElementById('burnForm').style.display = tab === 'burn' ? '' : 'none';
   document.getElementById('tabEat').className = 'log-tab' + (tab === 'eat' ? ' active-eat' : '');
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
+}
+
+function prefillChips() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = 'JJ Kickin Ranch Chips';
+  document.getElementById('mealCal').value = '290';
+  document.getElementById('mealProt').value = '3';
+  document.getElementById('mealFib').value = '2';
 }
 
 function prefillBootlegger() {
