@@ -203,7 +203,8 @@
         </div>
         <div class="btn-row" style="flex-wrap:wrap;gap:6px;margin-bottom:8px">
           <button class="btn-ghost" onclick="prefillChickenPita()">🫓 Chicken Pita</button>
-          <button class="btn-ghost" onclick="prefillHyChi()">🥡 HyChi Sesame</button>
+          <button class="btn-ghost" onclick="prefillHyChi()">🥡 HyChi Cashew</button>
+          <button class="btn-ghost" onclick="prefillApple()">🍎 Apple</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -310,12 +311,20 @@ function setLogTab(tab) {
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
 }
 
+function prefillApple() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = 'Apple';
+  document.getElementById('mealCal').value = '95';
+  document.getElementById('mealProt').value = '0.5';
+  document.getElementById('mealFib').value = '4';
+}
+
 function prefillHyChi() {
   setLogTab('eat');
-  document.getElementById('mealLabel').value = 'HyChi Sesame Chicken Dinner';
-  document.getElementById('mealCal').value = '1050';
+  document.getElementById('mealLabel').value = 'HyChi Cashew Chicken Dinner';
+  document.getElementById('mealCal').value = '915';
   document.getElementById('mealProt').value = '35';
-  document.getElementById('mealFib').value = '3';
+  document.getElementById('mealFib').value = '4';
 }
 
 function prefillChickenPita() {
