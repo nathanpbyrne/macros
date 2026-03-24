@@ -209,6 +209,7 @@
           <button class="btn-ghost" onclick="prefillChips()">🥔 JJ Ranch Chips</button>
           <button class="btn-ghost" onclick="prefillHoboMeal()">🥘 Hobo Meal</button>
           <button class="btn-ghost" onclick="prefillTurkeySandwich()">🥪 Turkey Sandwich</button>
+          <button class="btn-ghost" onclick="prefillPolishSausage()">🌭 Polish Sausage</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -313,6 +314,14 @@ function setLogTab(tab) {
   document.getElementById('burnForm').style.display = tab === 'burn' ? '' : 'none';
   document.getElementById('tabEat').className = 'log-tab' + (tab === 'eat' ? ' active-eat' : '');
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
+}
+
+function prefillPolishSausage() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = 'Polish Sausage, Cabbage & Potatoes';
+  document.getElementById('mealCal').value = '545';
+  document.getElementById('mealProt').value = '19';
+  document.getElementById('mealFib').value = '9';
 }
 
 function prefillTurkeySandwich() {
