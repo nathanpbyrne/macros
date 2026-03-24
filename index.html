@@ -206,7 +206,7 @@
           <button class="btn-ghost" onclick="prefillHyChi()">🥡 HyChi Cashew</button>
           <button class="btn-ghost" onclick="prefillApple()">🍎 Apple</button>
           <button class="btn-ghost" onclick="prefillBootlegger()">🥖 Bootlegger Club</button>
-          <button class="btn-ghost" onclick="prefillChips()">🥔 JJ Ranch Chips</button>
+          <button class="btn-ghost" onclick="prefillHoboMeal()">🥘 Hobo Meal</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -311,6 +311,14 @@ function setLogTab(tab) {
   document.getElementById('burnForm').style.display = tab === 'burn' ? '' : 'none';
   document.getElementById('tabEat').className = 'log-tab' + (tab === 'eat' ? ' active-eat' : '');
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
+}
+
+function prefillHoboMeal() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = 'Hobo Meal';
+  document.getElementById('mealCal').value = '607';
+  document.getElementById('mealProt').value = '40';
+  document.getElementById('mealFib').value = '9';
 }
 
 function prefillChips() {
@@ -558,20 +566,19 @@ function renderWeek() {
 
   const wt = document.getElementById('weekTotals');
   const totals = [
-    { label: 'Calories Eaten', value: weekData.reduce((s,d)=>s+d.calories,0), color: '#f97316' },
-    { label: 'Calories Burned', value: weekData.reduce((s,d)=>s+d.burned,0), color: '#a855f7' },
-    { label: 'Net Calories', value: weekData.reduce((s,d)=>s+d.net,0), color: '#06b6d4' },
-    { label: 'Total Protein', value: weekData.reduce((s,d)=>s+d.protein,0) + 'g', color: '#3b82f6' },
-    { label: 'Total Fiber', value: weekData.reduce((s,d)=>s+d.fiber,0) + 'g', color: '#22c55e' },
+    { label: 'Calories Eaten', value: weekData.reduce((s,d)=>s+d.calories,0), color: '#f97316', unit: '' },
+    { label: 'Calories Burned', value: weekData.reduce((s,d)=>s+d.burned,0), color: '#a855f7', unit: '' },
+    { label: 'Net Calories', value: weekData.reduce((s,d)=>s+d.net,0), color: '#06b6d4', unit: '' },
+    { label: 'Total Protein', value: weekData.reduce((s,d)=>s+d.protein,0), color: '#3b82f6', unit: 'g' },
+    { label: 'Total Fiber', value: weekData.reduce((s,d)=>s+d.fiber,0), color: '#22c55e', unit: 'g' },
   ];
   wt.innerHTML = totals.map((t, i) => {
-    const num = typeof t.value === 'number' ? t.value : null;
-    const avg = num !== null ? Math.round(num / 7) : null;
+    const avg = Math.round(t.value / 7);
     return `<div class="totals-row" ${i===totals.length-1 ? 'style="border-bottom:none;margin-bottom:0;padding-bottom:0"' : ''}>
       <span class="totals-label">${t.label}</span>
       <div class="totals-right">
-        <span class="totals-value" style="color:${t.color}">${t.value}</span>
-        ${avg !== null ? `<span class="totals-avg">avg ${avg}/day</span>` : ''}
+        <span class="totals-value" style="color:${t.color}">${t.value}${t.unit}</span>
+        <span class="totals-avg">avg ${avg}${t.unit}/day</span>
       </div>
     </div>`;
   }).join('');
