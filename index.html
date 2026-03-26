@@ -213,6 +213,7 @@
           <button class="btn-ghost" onclick="prefillBBQChicken()">🍗 BBQ Chicken Thighs</button>
           <button class="btn-ghost" onclick="prefillChickenTacos()">🌮 Grilled Chicken Tacos</button>
           <button class="btn-ghost" onclick="prefillMargarita()">🍹 NA Margarita</button>
+          <button class="btn-ghost" onclick="prefillPicklemans()">🥣 Pickleman's Soup & Sandwich</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -278,11 +279,13 @@ function formatDate(ds) {
 
 function getWeekDates(ds) {
   const d = new Date(ds + 'T12:00:00');
-  const day = d.getDay();
+  const day = d.getDay(); // 0=Sun, 1=Mon, ..., 5=Fri, 6=Sat
+  // Shift so week starts on Friday (5)
+  const offset = (day + 2) % 7; // days since last Friday
   const dates = [];
   for (let i = 0; i < 7; i++) {
     const nd = new Date(d);
-    nd.setDate(d.getDate() - day + i);
+    nd.setDate(d.getDate() - offset + i);
     dates.push(nd.toISOString().slice(0, 10));
   }
   return dates;
@@ -317,6 +320,14 @@ function setLogTab(tab) {
   document.getElementById('burnForm').style.display = tab === 'burn' ? '' : 'none';
   document.getElementById('tabEat').className = 'log-tab' + (tab === 'eat' ? ' active-eat' : '');
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
+}
+
+function prefillPicklemans() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = "Pickleman's Soup & Sandwich";
+  document.getElementById('mealCal').value = '680';
+  document.getElementById('mealProt').value = '26';
+  document.getElementById('mealFib').value = '5';
 }
 
 function prefillMargarita() {
