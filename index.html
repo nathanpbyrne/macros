@@ -214,6 +214,7 @@
           <button class="btn-ghost" onclick="prefillChickenTacos()">🌮 Grilled Chicken Tacos</button>
           <button class="btn-ghost" onclick="prefillMargarita()">🍹 NA Margarita</button>
           <button class="btn-ghost" onclick="prefillPicklemans()">🥣 Pickleman's Soup & Sandwich</button>
+          <button class="btn-ghost" onclick="prefillDRowes()">🥩 D. Rowe's Pork Steak</button>
         </div>
         <button class="btn-primary" style="width:100%" onclick="addEntry()">+ Log Meal</button>
       </div>
@@ -320,6 +321,14 @@ function setLogTab(tab) {
   document.getElementById('burnForm').style.display = tab === 'burn' ? '' : 'none';
   document.getElementById('tabEat').className = 'log-tab' + (tab === 'eat' ? ' active-eat' : '');
   document.getElementById('tabBurn').className = 'log-tab' + (tab === 'burn' ? ' active-burn' : '');
+}
+
+function prefillDRowes() {
+  setLogTab('eat');
+  document.getElementById('mealLabel').value = "D. Rowe's Pork Steak";
+  document.getElementById('mealCal').value = '1480';
+  document.getElementById('mealProt').value = '107';
+  document.getElementById('mealFib').value = '10';
 }
 
 function prefillPicklemans() {
